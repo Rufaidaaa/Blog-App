@@ -1,6 +1,10 @@
 import React, { Component } from "react";
 import axios from "axios";
 
+
+const axiosInstance= axios.create({
+  baseURL: 'https://jsonplaceholder.typicode.com'
+})
 export default class App extends Component {
   state = {
     hello: null
@@ -8,9 +12,11 @@ export default class App extends Component {
 
   componentDidMount() {
     // API call via local server
-    axios.get('/hello')
-      .then(res => this.setState({ hello: res.data }))
-      .catch(error => console.error(error))
+    axiosInstance.get('/posts')
+      // .then(res => )
+      .then(res => console.log( res.data ))
+      .catch(err => console.log(err)
+   );
     }
     
   render() {
