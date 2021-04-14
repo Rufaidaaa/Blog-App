@@ -12,13 +12,14 @@ export default class App extends Component {
 
   componentDidMount() {
     // API call via local server
-    axiosInstance.get('/posts')
-      // .then(res => )
-      .then(res => console.log( res.data ))
-      .catch(err => console.log(err)
-   );
+ this.asyncFunction()
     }
     
+    asyncFunction =async() =>{
+      await fetch('https://jsonplaceholder.typicode.com/posts')
+      .then(res => res.json())
+      .then(json => console.log(json) )
+    }
   render() {
     return (
       <div className="App">
