@@ -1,8 +1,9 @@
-var express = require("express");
-var router = express.Router();
+var express = require('express')
 
-router.get("/hello", function (req, res) {
-  res.json("hello world");
-});
+var router = express.Router()
 
-module.exports = router;
+router.get('/hello', function (req, res) {
+  res.json("hello world")
+})
+
+module.exports = router
