@@ -7,7 +7,7 @@ const initialState = {
 
 const PostReducer = (state = initialState, action) => {
     switch(action.type) {
-      case ACTION_TYPES.FETC_DB_POSTS:
+      case ACTION_TYPES.FETCH_DB_POSTS:
         return {
           ...state,
           posts: action.payload
