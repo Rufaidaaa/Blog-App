@@ -4,6 +4,7 @@ import axios from 'axios';
 import history from '../utils/history';
 import Context from '../utils/context';
 import TextField from '@material-ui/core/TextField';
+import { connect } from 'react-redux'
 
 
 
@@ -50,6 +51,10 @@ const AddPost = () => {
       </div>
   )}
 
+function mapStateToProps(state){
+   return{
+     db_profile: state.auth_reducer.db_profile
+   }
+}
 
-
-export default AddPost;
+export default connect(mapStateToProps)(AddPost);
