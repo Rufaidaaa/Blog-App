@@ -11,8 +11,8 @@ class AddPost extends Component {
 
    handleSubmit = (event) => {
     event.preventDefault()
-    const user_id = context.dbProfileState[0].uid
-    const username = context.dbProfileState[0].username
+    const user_id= this.props.db_profile[0].uid
+    const username = this.props.dbProfileState[0].username
     const data = {title: event.target.title.value,
                   body: event.target.body.value,
                   username: username,
