@@ -1,17 +1,15 @@
-import React, { useContext} from 'react';
+import React, { Component} from 'react';
 import axios from 'axios';
 
 import history from '../utils/history';
-import Context from '../utils/context';
 import TextField from '@material-ui/core/TextField';
 import { connect } from 'react-redux'
 
 
 
-const AddPost = () => {
-  const context = useContext(Context)
+class AddPost extends Component {
 
-  const handleSubmit = (event) => {
+   handleSubmit = (event) => {
     event.preventDefault()
     const user_id = context.dbProfileState[0].uid
     const username = context.dbProfileState[0].username
@@ -26,10 +24,11 @@ const AddPost = () => {
       .then(setTimeout(() => history.replace('/'), 700) )
   }
 
+  render(){
 
     return(
       <div>
-        <form onSubmit={handleSubmit}>
+        <form onSubmit={this.handleSubmit}>
           <TextField
             id='title'
             label='Title'
@@ -49,7 +48,8 @@ const AddPost = () => {
         <br />
         <button onClick={() => history.replace('/posts')}> Cancel </button>
       </div>
-  )}
+    )
+  }
 
 function mapStateToProps(state){
    return{
