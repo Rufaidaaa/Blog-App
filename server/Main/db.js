@@ -1,10 +1,10 @@
 const {pool} =require('pg')
 
 const pool = new Pool({
-    user: 'postgres',
-    host: 'localhost',
-    database: 'mydb',
-    password: 'pakistan@100',
+        user: process.env.USER,
+        host: 'localhost',
+        database: 'mydb',
+        password: process.env.PASSWORD,
     port: 5000
 })
 

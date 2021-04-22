@@ -1,60 +1,53 @@
-import React, { Component} from 'react';
+import React, { Component } from 'react'
 import axios from 'axios';
 
 import history from '../utils/history';
 import TextField from '@material-ui/core/TextField';
-import { connect } from 'react-redux'
-
+import { connect } from 'react-redux';
 
 
 class AddPost extends Component {
 
-   handleSubmit = (event) => {
-    event.preventDefault()
-    const user_id= this.props.db_profile[0].uid
-    const username = this.props.dbProfileState[0].username
-    const data = {title: event.target.title.value,
-                  body: event.target.body.value,
-                  username: username,
-                  uid: user_id}
 
-    axios.post('/api/post/posttodb', data)
-      .then(response => console.log(response))
-      .catch((err) => console.log(err))
-      .then(setTimeout(() => history.replace('/'), 700) )
-  }
+    handleSubmit = (event) => {
+        event.preventDefault();
+        const user_id = this.props.db_profile[0].uid;
+        const username = this.props.db_profile[0].username;
+        const data = {
+            title: event.target.title.value, 
+            body: event.target.body.value,
+            uid: user_id,
+            username
+        }
 
-  render(){
+         axios.post('api/post/posttodb', data)   
+            .then(res => console.log(res))
+            .catch((err) => console.log(err))
+            .then(setTimeout(() => history.replace('/'), 700 ));
+    }
 
-    return(
-      <div>
-        <form onSubmit={this.handleSubmit}>
-          <TextField
-            id='title'
-            label='Title'
-            margin='normal'
-            />
-          <br />
-          <TextField
-            id='body'
-            label='Body'
-            multiline
-            rowsMax='4'
-            margin="normal"
-            />
-           <br />
-           <button type='submit'> Submit </button>
-           </form>
-        <br />
-        <button onClick={() => history.replace('/posts')}> Cancel </button>
-      </div>
-    )
-  }
+    render() {
+        return (
+            <div>
+                <form onSubmit={this.handleSubmit}>
 
-function mapStateToProps(state){
-   return{
-     db_profile: state.auth_reducer.db_profile
-   }
+                <TextField id="title" lable="Title" margin="normal" /> <br />
+                <TextField id="body" lable="Body" multiline rows="4" margin="normal" /> <br />
+                <button type="submit" >Submit</button>
+
+                </form>
+                <br />
+                <button onClick={() => history.replace('/posts')}>Cancel</button>
+            </div>
+        )
+    }
 }
 
-export default connect(mapStateToProps)(AddPost);
+
+function mapStateToProps(state) {
+    return {
+        db_profile: state.auth_reducer.db_profile
+    }
+}
+
+export default connect(mapStateToProps) (AddPost)

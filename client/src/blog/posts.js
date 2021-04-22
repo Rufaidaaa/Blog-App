@@ -1,52 +1,62 @@
-import React, { Component } from 'react'
-import { connect } from 'react-redux'
-import { Link } from 'react-router-dom'
-import * as ACTIONS from '../store/actions/actions'
+import React, { Component } from 'react';
+import { connect } from 'react-redux';
 
-import Button from '@material-ui/core/Button'
-import Table from '@material-ui/core/Table'
-import TableBody from '@material-ui/core/Table'
-import TableCell from '@material-ui/core/Table'
-import TableHead from '@material-ui/core/Table'
-import TableRow from '@material-ui/core/Table'
-import Paper from '@material-ui/core/Paper'
-import axios from 'axios'
+import { Link } from 'react-router-dom';
+import * as ACTIONS from '../store/actions/actions';
+import axios from 'axios';
+import history from '../utils/history';
 
-const renderPosts= post =>(
-<TableRow>
-    <TableCell>
-        <Link to={{pathname: '/post/' + post.post.pid, state:{post}}}><h4>{post.post.title}</h4></Link>
-        <br />
-        <p>{post.post.body}</p>
-    </TableCell>
-</TableRow>
+import Button from '@material-ui/core/Button';
+import Table from '@material-ui/core/Table';
+import TableBody from '@material-ui/core/Table';
+import TableCell from '@material-ui/core/Table';
+import TableHead from '@material-ui/core/Table';
+import TableRow from '@material-ui/core/Table';
+import Paper from '@material-ui/core/Paper';
+
+
+const RenderPosts = post => (
+    <TableRow>
+        <TableCell>
+            <Link to={{pathname: '/post/' + post.post.pid, state: {post} }}><h4>{ post.post.title }</h4></Link>
+            <br />
+            <p>{post.post.body}</p>
+        </TableCell>
+    </TableRow>
 )
 
-class Posts extends Component{
-    componentDidMount(){
+
+class Post extends Component {
+    
+    componentDidMount() {
         axios.get('/api/get/allposts')
-        .then(res => this.props.set_posts(res.data ))
-        .catch((err) => console.log(err))
+        .then(res => this.props.set_posts(res.data))
+        .catch((err) => console.log(err));
     }
-    render(){
-        return(
+
+    render() {
+        return (
             <div>
                 <br />
-                <Link to="/newpost">
-                    <Button color="primary">
-                        Add post
-                    </Button>
+                <Link to="/addpost">
+                    <Button color="primary">Add Post</Button>
                 </Link>
-                <h1>posts</h1>
+                <h1>Posts</h1>
                 <Paper>
                     <Table>
                         <TableHead>
-                            <TableRow><TableCell>Title</TableCell></TableRow>
+                            <TableRow>
+                                <TableCell>Title</TableCell>
+                            </TableRow>
                         </TableHead>
                         <TableBody>
-                            {this.props.posts ? this.props.posts.map(post =>
-                            <renderPosts key={ post.pid} post={post}/>
-                            ) :null }
+                            {
+                                this.props.posts
+                                ? this.props.posts.map(post => 
+                                    <RenderPosts key={post.pid} post={post} />   
+                                )
+                                : null
+                            }
                         </TableBody>
                     </Table>
                 </Paper>
@@ -55,16 +65,12 @@ class Posts extends Component{
     }
 }
 
-function mapStateToProps(state){
-    return{
-        posts: state.postReducer.posts
-    }
+function mapStateToProps(state) {
+    return { posts: state.post_reducer.posts }
 }
 
 function mapDispatchToProps(dispatch) {
- return{
-     set_posts: (posts) =>dispatch(ACTIONS.fetch_db_posts(posts))
- }
+    return { set_posts: (posts) => dispatch(ACTIONS.fetch_db_posts(posts)) }
 }
 
-export default connect(mapStateToProps, mapDispatchToProps)(Posts)
+export default connect(mapStateToProps, mapDispatchToProps) (Post)

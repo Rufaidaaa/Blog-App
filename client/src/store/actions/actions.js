@@ -93,3 +93,16 @@ export const remove_post_comments = () => {
     type: ACTION_TYPES.REMOVE_POST_COMMENTS
   }
 }
+
+export const fetch_user_posts = (posts) => {
+  return {
+    type: ACTION_TYPES.FETCH_USERS_POSTS,
+    payload: posts
+  }
+}
+
+export const remove_user_posts = () => {
+  return {
+    type: ACTION_TYPES.REMOVE_USERS_POSTS
+  }
+}

@@ -1,4 +1,5 @@
-CREATE TABLE users (
+CREATE TABLE users
+(
   uid SERIAL PRIMARY KEY,
   username VARCHAR(255) UNIQUE,
   email VARCHAR(255),
@@ -7,7 +8,8 @@ CREATE TABLE users (
   last_login DATE
 );
 
-CREATE TABLE posts (
+CREATE TABLE posts
+(
   pid SERIAL PRIMARY KEY,
   title VARCHAR(255),
   body VARCHAR,
@@ -16,7 +18,8 @@ CREATE TABLE posts (
   date_created TIMESTAMP
 );
 
-CREATE TABLE comments (
+CREATE TABLE comments
+(
   cid SERIAL PRIMARY KEY,
   comment VARCHAR(255),
   author VARCHAR REFERENCES users(username),
