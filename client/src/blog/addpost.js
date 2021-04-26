@@ -20,7 +20,7 @@ class AddPost extends Component {
             username
         }
 
-         axios.post('api/post/posttodb', data)   
+         axios.post('/api/post/posttodb', data)   
             .then(res => console.log(res))
             .catch((err) => console.log(err))
             .then(setTimeout(() => history.replace('/'), 700 ));

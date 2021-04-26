@@ -1,8 +1,8 @@
 import Reducer1 from './reducer1'
 import AuthReducer from './auth_reducer';
 import UserReducer from './user_reducer';
+import PostReducer from './posts_reducer';
 import { combineReducers } from 'redux';
-import PostReducer from './postReducer'
 
 
 const rootReducer = combineReducers({

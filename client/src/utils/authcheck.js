@@ -1,18 +1,19 @@
 import React, { Component } from 'react';
 import history from './history';
 import * as ACTIONS from '../store/actions/actions';
-import { connect } from 'react-redux'
-import axios form 'axios'
+import { connect } from 'react-redux';
+import axios from 'axios';
 
 
 class AuthCheck extends Component {
 
-  send_profile_to_db = (profile) {
-    const data= profile
-    axios.post('/api/posts/userprofiletodb', data)
-    .then(() => axios.get('/api/posts/userprofilefromdb'), {params : {email: profile.profile.email}}
-    .then(res => this.props.set_db_profile(res.data)))
-    .then(history.replace('/'))
+  send_profile_to_db = (profile) => {
+    const data = profile;
+
+    axios.post('api/post/userprofiletodb', data)
+    .then(() => axios.get('/api/get/userprofilefromdb', {params: {email: profile.profile.email}})
+                .then(res => this.props.set_db_profile(res.data)))
+    .then(history.replace('/'));
   }
 
   componentDidMount() {
@@ -39,7 +40,6 @@ class AuthCheck extends Component {
 
 function mapStateToProps (state) {
   return {
-
   }
 }
 
@@ -49,14 +49,8 @@ function mapDispatchToProps (dispatch) {
     login_failure: () => dispatch(ACTIONS.login_failure()),
     add_profile: (profile) => dispatch(ACTIONS.add_profile(profile)),
     remove_profile: () => dispatch(ACTIONS.remove_profile()),
-    set_db_profile: (profile) =>dispatch(ACTIONS.set_db_profile(profile)),
-    remove_db_profile: () =>dispatch(ACTIONS.remove_db_profile()),
-    // fetch_db_posts: (profile) =>dispatch(ACTIONS.fetch_db_posts),
-    // remove_db_posts: (profile) =>dispatch(ACTIONS.remove_db_posts),
-    // fetch_db_comments: (profile) =>dispatch(ACTIONS.fetch_db_comments),
-    // remove_db_comments: (profile) =>dispatch(ACTIONS.remove_db_comments),
-
-
+    set_db_profile: (profile) => dispatch(ACTIONS.set_db_profile(profile)),
+    remove_db_profile: () => dispatch(ACTIONS.remove_db_profile()),
   }
 }
 

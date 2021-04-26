@@ -7,6 +7,7 @@ class Header extends Component {
 
   render() {
     return(
+    
         <div>
           <Link to='/' style={{padding: '5px'}}>
             Home
@@ -26,6 +27,9 @@ class Header extends Component {
           <Link to='/renderlist' style={{padding: '5px'}}>
              List
           </Link>
+          <Link to='/posts' style={{padding: '5px'}}>
+            Forum
+          </Link>
           <Link to='/privateroute' style={{padding: '5px'}}>
             Private Route
           </Link>
@@ -37,6 +41,7 @@ class Header extends Component {
           <br />
           <br />
         </div>
+       
     )}
 }
 

@@ -49,9 +49,9 @@ export const add_profile = (profile) => {
   }
 }
 
-export const remove_profile = () => {
+export const remove_profile = () =>{
   return {
-    type: ACTION_TYPES.REMOVE_PROFILE
+    type: ACTION_TYPES.REMOVE_PROFILE,
   }
 }
 
@@ -70,7 +70,7 @@ export const remove_db_profile = () => {
 
 export const fetch_db_posts = (posts) => {
   return {
-    type: ACTION_TYPES.FETCH_DB_POSTS,
+    type: ACTION_TYPES.FETCH_DB_POST,
     payload: posts
   }
 }
@@ -96,13 +96,13 @@ export const remove_post_comments = () => {
 
 export const fetch_user_posts = (posts) => {
   return {
-    type: ACTION_TYPES.FETCH_USERS_POSTS,
+    type: ACTION_TYPES.FETCH_USER_POSTS,
     payload: posts
   }
 }
 
 export const remove_user_posts = () => {
   return {
-    type: ACTION_TYPES.REMOVE_USERS_POSTS
+    type: ACTION_TYPES.REMOVE_USER_POSTS
   }
 }

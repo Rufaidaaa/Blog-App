@@ -1,14 +1,15 @@
+  
 import * as ACTION_TYPES from '../actions/action_types'
 
 const initialState = {
-  posts: [],
-  comments: [],
-  user_posts: []
+    posts: [],
+    comments: [],
+    user_posts: []
 }
 
-const PostReducer = (state = initialState, action) => {
+const PostsReducer = (state = initialState, action) => {
     switch(action.type) {
-      case ACTION_TYPES.FETCH_DB_POSTS:
+      case ACTION_TYPES.FETCH_DB_POST:
         return {
           ...state,
           posts: action.payload
@@ -28,20 +29,19 @@ const PostReducer = (state = initialState, action) => {
           ...state,
           comments: []
         }
-        case ACTION_TYPES.FETCH_USER_POSTS:
-          return {
-            ...state,
-            user_posts: action.payload
-          }
-        case ACTION_TYPES.REMOVE_USER_POSTS:
-          return {
-            ...state,
-            user_posts: []
-          }
-
+      case ACTION_TYPES.FETCH_USER_POSTS:
+        return {
+          ...state,
+          user_posts: action.payload
+        }
+      case ACTION_TYPES.REMOVE_USER_POSTS:
+        return {
+          ...state,
+          user_posts: []
+        }
       default:
         return state
     }
 }
 
-export default PostReducer;
+export default PostsReducer;

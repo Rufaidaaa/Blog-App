@@ -3,8 +3,8 @@ import history from './history';
 
 export default class Auth {
   auth0 = new auth0.WebAuth({
-    domain: 'webapp1.auth0.com',
-    clientID: 'uZxUdMAsiDWeu3OrNpoi4JwJscdF5nAx',
+    domain: 'dev-4xo3-sdu.us.auth0.com',
+    clientID: 'FZDFTq0uqrXUGjdkLaBiChxjnxq5rQnG',
     redirectUri: 'http://localhost:3000/callback',
     responseType: 'token id_token',
     scope: 'openid profile email'
@@ -66,5 +66,4 @@ export default class Auth {
     let expiresAt = JSON.parse(localStorage.getItem('expiresAt'))
     return new Date().getTime() < expiresAt
   }
-
 }
