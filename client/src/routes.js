@@ -62,7 +62,6 @@ class Routes extends Component {
 
   render() {
     return(
-      
       <div>
         <Router history={history} >
         <div>

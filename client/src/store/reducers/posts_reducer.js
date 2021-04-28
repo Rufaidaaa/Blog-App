@@ -1,4 +1,3 @@
-  
 import * as ACTION_TYPES from '../actions/action_types'
 
 const initialState = {
@@ -9,7 +8,7 @@ const initialState = {
 
 const PostsReducer = (state = initialState, action) => {
     switch(action.type) {
-      case ACTION_TYPES.FETCH_DB_POST:
+      case ACTION_TYPES.FETCH_DB_POSTS:
         return {
           ...state,
           posts: action.payload

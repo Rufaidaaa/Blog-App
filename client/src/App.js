@@ -1,9 +1,9 @@
 import React, { Component } from 'react';
 import Routes from './routes';
 import axios from 'axios';
-import { BrowserRouter} from 'react-router-dom'
 
 import './App.css';
+import { BrowserRouter } from 'react-router-dom';
 
 const axiosInst = axios.create({
   baseURL: 'https://jsonplaceholder.typicode.com'
