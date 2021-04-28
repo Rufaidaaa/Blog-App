@@ -23,10 +23,10 @@ import history from './utils/history';
 
 import { Router, Route, Switch, Redirect } from 'react-router';
 
-import Posts from './Blog/post';
-import AddPost from './Blog/addpost';
-import ShowPost from './Blog/showpost';
-import EditPost from './Blog/editpost';
+import Posts from './blog/post';
+import AddPost from './blog/addpost';
+import ShowPost from './blog/showpost';
+import EditPost from './blog/editpost';
 
 
 

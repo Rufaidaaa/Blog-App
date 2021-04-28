@@ -7,49 +7,75 @@ import axios from 'axios';
 import history from '../utils/history';
 
 import Button from '@material-ui/core/Button';
-import Table from '@material-ui/core/Table';
-import TableBody from '@material-ui/core/Table';
-import TableCell from '@material-ui/core/Table';
-import TableHead from '@material-ui/core/Table';
-import TableRow from '@material-ui/core/Table';
-import Paper from '@material-ui/core/Paper';
+import Card from "@material-ui/core/Card";
+import CardContent from "@material-ui/core/CardContent";
+import CardHeader from "@material-ui/core/CardHeader";
 
 
 const RenderPosts = post => (
-    <TableRow>
-        <TableCell>
-            <Link to={{pathname: '/post/' + post.post.pid, state: {post} }}><h4>{ post.post.title }</h4></Link>
-            <br />
-            <p>{post.post.body}</p>
-        </TableCell>
-    </TableRow>
+    <div className="CardStyles">
+    <Card >
+      <CardHeader
+        title={<Link to={{pathname:'/post/' + post.post.pid, state: {post}}}>
+                  {post.post.title}
+                </Link> }
+        subheader={
+            <div className="FlexColumn">
+              <div className="FlexRow">
+              {  post.post.date_created }
+              </div>
+             
+            </div>
+            }
+          />
+      <br />
+      <CardContent>
+        <span style={{overflow: 'hidden' }}> {post.post.body} </span>
+      </CardContent>
+    </Card>
+    </div>
 )
 
 
 class Post extends Component {
-    
-    componentDidMount() {
-        axios.get('/api/get/allposts')
-        .then(res => this.props.set_posts(res.data))
-        .catch((err) => console.log(err));
+    constructor(props) {
+        super(props)
+  
+      this.state = {
+        posts: [],
+        opacity: 0,
+      }
     }
+
+    componentDidMount() {
+        this.handleTransition()
+        axios.get('/api/get/allposts')
+          .then(res => this.props.set_posts(res.data))
+          .then(() => this.add_posts_to_state(this.props.posts))
+          .catch((err) => console.log(err))
+      }
+    
+    
+  handleTransition = () => {
+    setTimeout(() => this.setState({opacity: 1}), 400 )
+  }
+
+  add_posts_to_state = (posts) => {
+    this.setState({posts: [...posts]})
+  }
 
     render() {
         return (
             <div>
+                 <div style={{opacity: this.state.opacity, transition: 'opacity 2s ease'}}>
                 <br />
                 <Link to="/addpost">
                     <Button color="primary">Add Post</Button>
                 </Link>
+                </div>
+                <div style={{opacity: this.state.opacity, transition: 'opacity 2s ease'}}>
                 <h1>Posts</h1>
-                <Paper>
-                    <Table>
-                        <TableHead>
-                            <TableRow>
-                                <TableCell>Title</TableCell>
-                            </TableRow>
-                        </TableHead>
-                        <TableBody>
+              <div>
                             {
                                 this.props.posts
                                 ? this.props.posts.map(post => 
@@ -57,9 +83,8 @@ class Post extends Component {
                                 )
                                 : null
                             }
-                        </TableBody>
-                    </Table>
-                </Paper>
+                </div>
+            </div>
             </div>
         )
     }
