@@ -23,7 +23,10 @@ import history from './utils/history';
 
 import { Router, Route, Switch, Redirect } from 'react-router';
 
-
+import Posts from './Blog/post';
+import AddPost from './Blog/addpost';
+import ShowPost from './Blog/showpost';
+import EditPost from './Blog/editpost';
 
 
 
@@ -42,7 +45,6 @@ const PrivateRoute = ({component: Component, auth }) => (
   }
   />
 )
-
 
 
 class Routes extends Component {
@@ -71,6 +73,12 @@ class Routes extends Component {
             <Route path='/authcheck' render={() => <AuthCheck auth={auth} /> } />
             <Route path='/redirect' component={UnauthRedirect} />
             <Route path='/renderlist' component={RenderList} />
+
+            <Route path='/posts' component={Posts} />
+            <Route path='/post/:pid' component={ShowPost} />
+            <Route path='/editpost/:pid' component={EditPost} />
+            <Route path='/addpost' component={AddPost} />
+
 
             <Route path='/callback' render={(props) => { handleAuthentication(props); return <Callback />}} />
             <Route path="/component1" render={(props) => <Component1 {...props} /> } />
